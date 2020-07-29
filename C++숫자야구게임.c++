@@ -4,22 +4,20 @@ using namespace std;
 
 int main()
 {
-    
-    /*
     int iNumber1[3] = {}, iNumber2[9] = {};
     int iStrike = 0, iBall = 0;
 
     srand((unsigned int)time(0));
 
 
-    // »ó´ë¹æ °ª ÀÔ·Â
+    // ìƒëŒ€ë°© ê°’ ì…ë ¥
     for (int i = 0; i < 9; i++)
     {
         iNumber2[i] = i+1;
 
     }
 
-    // ¼ÅÇÃ
+    // ì…”í”Œ
     int iTemp, idx1, idx2;
     for (int i = 0; i < 100; i++)
     {
@@ -35,13 +33,13 @@ int main()
 
     do
     {
-        // ¹İº¹ ½Ã¿¡ ÃÊ±â°ª
+        // ë°˜ë³µ ì‹œì— ì´ˆê¸°ê°’
         iStrike = 0, iBall = 0;
 
-        // »ç¿ëÀÚ °ª ÀÔ·Â
+        // ì‚¬ìš©ì ê°’ ì…ë ¥
         cout << "*\t*\t*\t" << endl;
 
-        cout << "¼ıÀÚ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä : ";
+        cout << "ìˆ«ìë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš” : ";
         cin >> iNumber1[0] >> iNumber[1] >> iNumber[2];
 
         if (iNumber1[0] == 0 || iNumber1[1] == 0 || iNumber1[2] == 0)
@@ -50,7 +48,7 @@ int main()
         }
         
 
-        // °ª ºñ±³
+        // ê°’ ë¹„êµ
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
@@ -70,7 +68,7 @@ int main()
             }
         }
 
-        // °á°ú Ãâ·Â
+        // ê²°ê³¼ ì¶œë ¥
         if (iStrike == 0 && iBall == 0)
         {
             cout << "Out" << endl;
