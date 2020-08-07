@@ -23,7 +23,7 @@ using namespace std;
 #define PRICE 5
 
 
-struct _tagBook // 책 이름, 설명, 반납 여부, 책 고유넘버
+struct _tagBook // 책 이름, 작가, 설명, 가격, 반납 여부, 책 고유넘버
 {
 	char strBookName[NAME_SIZE_MAX];
 	char strWriter[NAME_SIZE_MAX];
