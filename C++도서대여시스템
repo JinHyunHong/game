@@ -1,0 +1,195 @@
+#include <iostream>
+
+using namespace std;
+
+/*
+관리 프로그램 만들기
+도서 대여 프로그램
+1. 책등록
+2. 책 대여
+3. 책 반남
+4. 책 목록
+5. 종료
+
+책 구조체는 이름, 대여금액, 책 번호, 대여여부가 필요하다.
+책목록을 선택하면 책 정보를 출력해준다.
+*/
+
+#define MAX_BOOK 15
+
+#define NAME_SIZE_MAX 40
+#define DESCRIPTION 50
+#define LENT 10
+#define PRICE 5
+
+
+struct _tagBook // 책 이름, 설명, 반납 여부, 책 고유넘버
+{
+	char strBookName[NAME_SIZE_MAX];
+	char strWriter[NAME_SIZE_MAX];
+	char strDesc[DESCRIPTION];
+	char strPrice[PRICE];
+	char strIsLent[LENT];
+	int iNumber;
+
+};
+
+enum MENU
+{
+	MENU_NONE,
+	MENU_INSERT,
+	MENU_LENT,
+	MENU_RETURN,
+	MENU_LIST,
+	MENU_EXIT
+};
+
+int main()
+{
+	_tagBook tBookArr[MAX_BOOK] = {};
+
+	int BookNumber = 1;
+	int BookIdx = 0;
+	
+	char BookName[NAME_SIZE_MAX] = {};
+
+	while (true)
+	{
+		if (BookNumber > MAX_BOOK)
+			break;
+
+		system("cls");
+
+		cout << "\t도서관 책 대여 시스템" << endl;
+		cout << "1. 책 등록" << endl;
+		cout << "2. 책 대여" << endl;
+		cout << "3. 책 반납" << endl;
+		cout << "4. 책 목록" << endl;
+		cout << "5. 종료" << endl;
+
+		cout << "메뉴를 입력해 주세요 : ";
+		int iMenuInput;
+		cin >> iMenuInput;
+
+		if (iMenuInput == MENU_EXIT)
+			break;
+
+;
+
+		switch (iMenuInput)
+		{
+		case MENU_INSERT:
+
+			system("cls");
+
+			cout << "=============== 책 등록 ===============" << endl;
+			cout << "책 이름 : ";
+
+			cin.ignore(1024, '\n');
+
+			cin.getline(tBookArr[BookIdx].strBookName, NAME_SIZE_MAX);
+
+			cout << "저자 : ";
+			cin.getline(tBookArr[BookIdx].strWriter, NAME_SIZE_MAX);
+
+			cout << "책 가격 : ";
+			cin >> tBookArr[BookIdx].strPrice;
+
+			cin.ignore(1024, '\n');
+
+			cout << "책 설명 : ";
+			cin.getline(tBookArr[BookIdx].strDesc, DESCRIPTION);
+
+			strcpy_s(tBookArr[BookIdx].strIsLent, "대여 가능");
+
+			BookNumber++;
+			BookIdx++;
+
+			cout << "책 등록이 완료되었습니다." << endl;
+			break;
+		case MENU_LENT:
+
+			system("cls");
+
+			cout << "=============== 책 대여 ===============" << endl;
+			cout << "대여할 책 이름 검색 : ";
+
+			cin.ignore(1024, '\n');
+
+			cin.getline(BookName, NAME_SIZE_MAX);
+
+			for (int i = 0; i < BookIdx; i++)
+			{
+				if (strcmp(tBookArr[i].strBookName, BookName) == 0)
+				{
+					if (strcmp(tBookArr[i].strIsLent, "대여 가능") == 0)
+					{
+						strcpy_s(tBookArr[i].strIsLent, "대여 불가");
+						cout << "대여 하셨습니다." << endl;
+					}
+
+					else if (strcmp(tBookArr[i].strIsLent, "대여 불가") == 0 )
+					{
+						cout << "대여가 불가능한 책입니다." << endl;
+						break;
+					}
+				}
+			}
+			
+
+			break;
+		case MENU_RETURN:
+
+			system("cls");
+
+			cout << "=============== 책 반납 ===============" << endl;
+			cout << "반납할 책 이름 검색 : ";
+
+			cin.ignore(1024, '\n');
+
+			cin.getline(BookName, NAME_SIZE_MAX);
+
+			for (int i = 0; i < BookIdx; i++)
+			{
+				if (strcmp(tBookArr[i].strBookName, BookName) == 0)
+				{
+					if (strcmp(tBookArr[i].strIsLent, "대여 불가") == 0)
+					{
+						strcpy_s(tBookArr[i].strIsLent, "대여 가능");
+						cout << "반납 하셨습니다." << endl;
+					}
+
+					else if (strcmp(tBookArr[i].strIsLent, "대여 가능") == 0)
+					{
+						cout << "대여가 가능한 책입니다." << endl;
+						break;
+					}
+				}
+			}
+
+			break;
+		case MENU_LIST:
+			system("cls");
+
+			cout << "=============== 책 리스트 ===============" << endl;
+
+
+			for (int i = 0; i < BookIdx; i++)
+			{
+				cout << "책 이름 : " << tBookArr[i].strBookName << endl;
+				cout << "저자 : " << tBookArr[i].strWriter << endl;
+				cout << "가격 : " << tBookArr[i].strPrice << endl;
+				cout << "설명 : " << tBookArr[i].strDesc << endl;
+				cout << "대여가능여부 : " << tBookArr[i].strIsLent << endl << endl;
+
+			}
+			break;
+		}
+
+		system("pause");
+
+
+	}
+	  
+	return 0;
+}
